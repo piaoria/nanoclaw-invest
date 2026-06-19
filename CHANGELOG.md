@@ -2,6 +2,14 @@
 
 형식: `## [YYYY-MM-DD] — 변경 내용`
 
+## [2026-06-19] — Phase 3 (3): 시장 데이터 수집 파이프라인
+
+- `@lab/database` 저장 레이어: `saveMarketSnapshot`(upsert, 중복수집 방지)·
+  `saveTechnicalIndicators`(snapshot당 1건)·`createMarketDataRepository`
+- `collectMarketData` 파이프라인: Provider→지표 계산→Supabase 저장 (의존성 주입)
+- 부분 실패 격리: 지표 실패해도 스냅샷은 저장, 종목별 failed 기록
+- 데이터 소스/DB 와 무관하게 mock 으로 검증 (테스트 53건 통과)
+
 ## [2026-06-19] — Phase 3 (2): Stooq Provider · fallback 체인
 
 - `StooqMarketDataProvider`: 공개 CSV 기반, 티커 자동 매핑(ETF/레버리지/지수)

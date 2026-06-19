@@ -20,6 +20,12 @@ importers:
       '@lab/database':
         specifier: workspace:*
         version: link:../../packages/database
+      '@lab/indicators':
+        specifier: workspace:*
+        version: link:../../packages/indicators
+      '@lab/market-data':
+        specifier: workspace:*
+        version: link:../../packages/market-data
       '@lab/shared':
         specifier: workspace:*
         version: link:../../packages/shared

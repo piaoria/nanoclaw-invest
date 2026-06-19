@@ -11,6 +11,8 @@
   "dependencies": {
     "@lab/contracts": "workspace:*",
     "@lab/database": "workspace:*",
+    "@lab/indicators": "workspace:*",
+    "@lab/market-data": "workspace:*",
     "@lab/shared": "workspace:*"
   }
 }
