@@ -28,6 +28,7 @@ export const collectMarketData = async ({ provider, repo, symbols, source = "unk
 
   const failed = [];
   const snapshotIds = {};
+  const market = []; // 판단 파이프라인 재사용을 위한 시장 입력 (중복 호출 방지)
   let saved = 0;
 
   for (const symbol of symbols) {
@@ -51,6 +52,12 @@ export const collectMarketData = async ({ provider, repo, symbols, source = "unk
       }
 
       snapshotIds[symbol] = snapshotId;
+      market.push({
+        symbol,
+        price: snap.price,
+        changeRate: snap.changeRate ?? null,
+        indicators: indicators ?? {},
+      });
       saved += 1;
     } catch (err) {
       logger?.error?.("스냅샷 저장 실패", { symbol, error: err.message });
@@ -59,5 +66,5 @@ export const collectMarketData = async ({ provider, repo, symbols, source = "unk
   }
 
   logger?.info?.("시장 데이터 수집 완료", { saved, failed: failed.length, source });
-  return { saved, failed, snapshotIds };
+  return { saved, failed, snapshotIds, market };
 };

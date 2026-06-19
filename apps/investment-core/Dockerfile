@@ -11,6 +11,9 @@ COPY apps/investment-core/package.json apps/investment-core/package.json
 COPY packages/shared/package.json packages/shared/package.json
 COPY packages/database/package.json packages/database/package.json
 COPY packages/contracts/package.json packages/contracts/package.json
+COPY packages/indicators/package.json packages/indicators/package.json
+COPY packages/market-data/package.json packages/market-data/package.json
+COPY packages/llm-providers/package.json packages/llm-providers/package.json
 
 RUN pnpm install --frozen-lockfile --prod=false
 

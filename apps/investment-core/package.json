@@ -14,6 +14,7 @@
     "@lab/indicators": "workspace:*",
     "@lab/llm-providers": "workspace:*",
     "@lab/market-data": "workspace:*",
-    "@lab/shared": "workspace:*"
+    "@lab/shared": "workspace:*",
+    "express": "^4.21.2"
   }
 }

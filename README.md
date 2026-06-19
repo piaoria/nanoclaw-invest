@@ -69,3 +69,28 @@ pnpm core:dev
 docker compose -f infra/docker-compose.yml up --build
 ```
 > NanoClaw 는 Compose 밖, Mac mini 호스트에 직접 실행한다.
+
+### 7. 한 사이클 직접 실행 (NanoClaw 없이)
+```bash
+# SUPABASE_*, GEMINI_API_KEY 환경변수가 필요
+pnpm --filter @lab/investment-core exec node scripts/runCycle.mjs <portfolioId>
+```
+수집 → Gemini 판단 → 검증 → 모의체결 → 저장까지 1회 실행한다.
+
+## HTTP 엔드포인트 (investment-core)
+
+| 메서드 | 경로 | 설명 |
+|---|---|---|
+| GET | `/health`, `/health/db` | 헬스체크 |
+| POST | `/portfolios/:id/cycle` | 수집+판단+체결 1회 실행 |
+| GET | `/portfolios/:id` | 포트폴리오 상태 |
+| GET | `/portfolios/:id/decisions` | 최근 판단 |
+| POST | `/portfolios/:id/report/daily` | 일간 보고서 생성 |
+| GET | `/reports/daily/latest` | 최신 일간 보고서 |
+
+## NanoClaw 도구
+
+`nanoclaw/src/tools.js` 에 얇은 커스텀 도구를 정의한다 (Core HTTP 호출만).
+환경변수 `INVESTMENT_CORE_URL` 로 Core 주소를 지정한다.
+- `get_portfolio_status` · `run_daily_cycle` · `get_recent_decisions`
+- `generate_daily_report` · `get_latest_daily_report`

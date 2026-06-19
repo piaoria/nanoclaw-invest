@@ -17,3 +17,10 @@ export {
   getLatestReport,
   createReportRepository,
 } from "./reportRepository.js";
+export {
+  loadPortfolioState,
+  persistPortfolioState,
+  loadStrategyConfig,
+  getRecentDecisions,
+  createPortfolioRepository,
+} from "./portfolioRepository.js";

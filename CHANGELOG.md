@@ -2,6 +2,17 @@
 
 형식: `## [YYYY-MM-DD] — 변경 내용`
 
+## [2026-06-19] — Phase 5 (2): NanoClaw 연결 · HTTP API · 통합 실행
+
+- 포트폴리오 상태 레이어(`portfolioRepository`): DB↔메모리 변환, 전략설정·최근판단 로드, 체결 후 영속화
+- 오케스트레이터(`runDailyCycle`): 로드→수집→판단→체결→상태저장 전체 사이클
+- `collectMarketData` 가 판단 재사용용 시장 입력(market)도 반환 (중복 호출/429 방지)
+- investment-core HTTP API(express): cycle·portfolio·decisions·report·health
+- context 와이어링(`createContext`): supabase·repos·providers 묶음
+- NanoClaw 얇은 도구(`nanoclaw/src/tools.js`) + Core HTTP 클라이언트
+- 통합 실행 스크립트(`scripts/runCycle.mjs`): NanoClaw 없이 1회 실행
+- Dockerfile 워크스페이스 매니페스트 보완, 서버 부팅 스모크 확인(health 200)
+
 ## [2026-06-19] — Phase 5 (1): 일간 성과·보고서 생성
 
 - 보고서/성과 저장 레이어(`reportRepository`): daily_performance(upsert)·reports·최신보고서 조회
