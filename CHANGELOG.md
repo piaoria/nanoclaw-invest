@@ -2,6 +2,12 @@
 
 형식: `## [YYYY-MM-DD] — 변경 내용`
 
+## [2026-06-19] — Phase 5 (1): 일간 성과·보고서 생성
+
+- 보고서/성과 저장 레이어(`reportRepository`): daily_performance(upsert)·reports·최신보고서 조회
+- 일간 보고서 생성(`generateDailyReport`): 평가액·일간/누적수익률·MDD 계산 + 당일 판단 요약 저장
+- 의존성 주입식으로 mock 테스트 (테스트 63건 통과)
+
 ## [2026-06-19] — Phase 4: Gemini 펀드 (MVP 핵심 루프)
 
 - `GeminiInvestorProvider`: 프롬프트 빌더 + 구조화 JSON 응답, SDK 동적 import(키/패키지 없이 mock 테스트 가능)

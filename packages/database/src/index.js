@@ -11,3 +11,9 @@ export {
   saveFill,
   createTradingRepository,
 } from "./tradingRepository.js";
+export {
+  saveDailyPerformance,
+  saveReport,
+  getLatestReport,
+  createReportRepository,
+} from "./reportRepository.js";
