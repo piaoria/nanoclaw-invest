@@ -19,7 +19,7 @@ import { computeIndicators } from "@lab/indicators";
  */
 export const collectMarketData = async ({ provider, repo, symbols, source = "unknown", logger }) => {
   if (!symbols || symbols.length === 0) {
-    return { saved: 0, failed: [], snapshotIds: {} };
+    return { saved: 0, failed: [], snapshotIds: {}, market: [] };
   }
 
   // 시세 스냅샷 (여러 종목 한 번에)

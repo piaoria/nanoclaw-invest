@@ -24,3 +24,4 @@ export {
   getRecentDecisions,
   createPortfolioRepository,
 } from "./portfolioRepository.js";
+export { saveAlert, createAlertRepository } from "./alertRepository.js";

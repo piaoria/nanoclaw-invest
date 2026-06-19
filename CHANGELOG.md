@@ -2,6 +2,17 @@
 
 형식: `## [YYYY-MM-DD] — 변경 내용`
 
+## [2026-06-19] — Phase 6: 실시간 급락 모니터 (KIS·Discord)
+
+- `KisMarketDataProvider`: 한국투자증권 OpenAPI 시세(국내/미국 자동분기, 토큰 캐싱) — 인트라데이 폴링 가능
+- 급락 감지(`dropDetection`): 전일대비/당일고가대비 임계치 트리거
+- `alerts` 테이블(0002) + `alertRepository`
+- Discord Webhook 알림(`discordNotifier`) + 메시지 포맷
+- 모니터(`monitorTick`): 5분 폴링→급락→쿨다운→알림+저장+(자동매매 시 사이클 발동)
+- `worker.js` 엔트리 + docker-compose `monitor-worker` 서비스
+- context 가 KIS 키 있으면 KIS 메인+야후 fallback 으로 자동 구성
+- 테스트 80건 통과 (KIS/급락/모니터/Discord 포함)
+
 ## [2026-06-19] — Phase 5 (2): NanoClaw 연결 · HTTP API · 통합 실행
 
 - 포트폴리오 상태 레이어(`portfolioRepository`): DB↔메모리 변환, 전략설정·최근판단 로드, 체결 후 영속화

@@ -88,6 +88,17 @@ pnpm --filter @lab/investment-core exec node scripts/runCycle.mjs <portfolioId>
 | POST | `/portfolios/:id/report/daily` | 일간 보고서 생성 |
 | GET | `/reports/daily/latest` | 최신 일간 보고서 |
 
+## 급락 모니터 (실시간)
+
+한국투자증권(KIS) 시세로 감시 종목을 5분마다 폴링해 급락을 감지하고 Discord로 알린다.
+- 데이터: `KIS_APP_KEY`/`KIS_APP_SECRET` 설정 시 KIS 메인(국내+미국), 미설정 시 무료 소스
+- 트리거: 전일대비 `DAILY_DROP_PCT`%, 당일고가대비 `INTRADAY_DROP_PCT`%
+- `ENABLE_AUTO_TRADE=true` + `MONITOR_PORTFOLIO_IDS` 지정 시 급락→자동 모의매수 사이클
+- 실행: `docker compose` 의 `monitor-worker`, 또는
+  ```bash
+  pnpm --filter @lab/investment-core exec node src/worker.js
+  ```
+
 ## NanoClaw 도구
 
 `nanoclaw/src/tools.js` 에 얇은 커스텀 도구를 정의한다 (Core HTTP 호출만).

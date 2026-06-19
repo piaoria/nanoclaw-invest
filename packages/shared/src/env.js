@@ -21,6 +21,11 @@ const envSchema = z.object({
   // 시장 데이터 (무료 소스는 키 없이도 동작 가능 → optional)
   MARKET_DATA_API_KEY: z.string().optional(),
 
+  // 한국투자증권(KIS) — 있으면 인트라데이 시세의 메인 소스로 사용
+  KIS_APP_KEY: z.string().optional(),
+  KIS_APP_SECRET: z.string().optional(),
+  KIS_BASE_URL: z.string().url().default("https://openapi.koreainvestment.com:9443"),
+
   // 투자 엔진
   FILL_RULE: z.string().default("IMMEDIATE_PRICE_PLUS_SLIPPAGE"),
   SLIPPAGE_BPS: z.coerce.number().nonnegative().default(5),
@@ -28,6 +33,16 @@ const envSchema = z.object({
 
   // 서비스
   INVESTMENT_CORE_PORT: z.coerce.number().int().positive().default(4001),
+
+  // 급락 모니터 워커
+  DISCORD_WEBHOOK_URL: z.string().url().optional(),
+  MONITOR_SYMBOLS: z.string().optional(), // 쉼표구분 (최대 50개 내외)
+  MONITOR_PORTFOLIO_IDS: z.string().optional(), // 쉼표구분 (자동매매 대상)
+  MONITOR_INTERVAL_MS: z.coerce.number().int().positive().default(300000), // 5분
+  DAILY_DROP_PCT: z.coerce.number().positive().default(3),
+  INTRADAY_DROP_PCT: z.coerce.number().positive().default(5),
+  ALERT_COOLDOWN_MS: z.coerce.number().int().nonnegative().default(1800000), // 30분
+  ENABLE_AUTO_TRADE: z.coerce.boolean().default(false),
 });
 
 /**

@@ -20,3 +20,16 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
+
+  # 급락 모니터 워커 (같은 이미지, 다른 엔트리)
+  monitor-worker:
+    build:
+      context: ..
+      dockerfile: apps/investment-core/Dockerfile
+    image: lab/investment-core
+    command: ["node", "apps/investment-core/src/worker.js"]
+    env_file:
+      - ../.env
+    restart: unless-stopped
+    depends_on:
+      - investment-core
