@@ -2,6 +2,15 @@
 
 형식: `## [YYYY-MM-DD] — 변경 내용`
 
+## [2026-06-19] — Phase 3 (2): Stooq Provider · fallback 체인
+
+- `StooqMarketDataProvider`: 공개 CSV 기반, 티커 자동 매핑(ETF/레버리지/지수)
+- `FallbackMarketDataProvider`: 메인=Stooq, 보조=야후 순차 시도 + fallback 훅
+- `createDefaultMarketDataProvider` 팩토리 (Stooq→야후)
+- 테스트 48건 통과
+- 알려진 이슈: 현재 개발 네트워크(공유/한국 IP)에서 야후 429, Stooq 봇차단(JS 검증)으로
+  실데이터 수집 불가. 무료 키 기반 API 또는 실운영 IP에서 재검증 필요.
+
 ## [2026-06-19] — Phase 3 (1): 지표 계산 · 야후 Provider
 
 - `@lab/indicators`: 이동평균·기간수익률·RSI(Wilder)·변동성·MDD·일괄계산 (테스트 10건)
