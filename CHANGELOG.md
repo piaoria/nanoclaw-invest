@@ -2,6 +2,14 @@
 
 형식: `## [YYYY-MM-DD] — 변경 내용`
 
+## [2026-06-19] — Phase 3 (1): 지표 계산 · 야후 Provider
+
+- `@lab/indicators`: 이동평균·기간수익률·RSI(Wilder)·변동성·MDD·일괄계산 (테스트 10건)
+- `@lab/market-data`: `YahooMarketDataProvider` (yahoo-finance2, 키 불필요, 티커로 ETF/레버리지/지수 통합 조회)
+- 시세 정규화(등락률 소수화)·일봉 종가 시계열 조회, mock 테스트 3건
+- 전체 테스트 38건 통과
+- 알려진 이슈: 공유 IP 환경에서 야후 실호출 429 발생 가능 → fallback 소스 검토 예정
+
 ## [2026-06-19] — Phase 2: 모의투자 코어 (LLM 없이 순수 로직)
 
 - 모의체결 엔진: 판단 당시가 + 슬리피지 + 수수료 즉시 체결(`fillEngine`)
