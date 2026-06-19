@@ -1,0 +1,19 @@
+{
+  "name": "llm-investment-lab",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "LLM 기반 모의투자 연구소",
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@10.28.2",
+  "scripts": {
+    "test": "vitest run",
+    "lint": "echo \"(lint 미설정)\" && exit 0",
+    "core:dev": "pnpm --filter @lab/investment-core dev"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.8"
+  }
+}
