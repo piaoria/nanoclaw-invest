@@ -2,6 +2,15 @@
 
 형식: `## [YYYY-MM-DD] — 변경 내용`
 
+## [2026-06-19] — Phase 4: Gemini 펀드 (MVP 핵심 루프)
+
+- `GeminiInvestorProvider`: 프롬프트 빌더 + 구조화 JSON 응답, SDK 동적 import(키/패키지 없이 mock 테스트 가능)
+- 투자 프롬프트(`prompt.js`): 시스템 지시·시장데이터·포트폴리오·출력 스키마 안내
+- 거래 저장 레이어(`tradingRepository`): llm_requests·decisions·orders·fills (재현성 메타 포함)
+- 판단 파이프라인(`runInvestmentDecision`): decide→스키마검증→llm_requests저장→체결→decisions/orders/fills 저장
+- 검증 실패 시 임의 주문 없이 HOLD/FAILED 기록 (PARSE_FAIL/SCHEMA_FAIL 구분)
+- 테스트 60건 통과
+
 ## [2026-06-19] — Phase 3 (3): 시장 데이터 수집 파이프라인
 
 - `@lab/database` 저장 레이어: `saveMarketSnapshot`(upsert, 중복수집 방지)·

@@ -9,5 +9,8 @@
   },
   "dependencies": {
     "@lab/contracts": "workspace:*"
+  },
+  "optionalDependencies": {
+    "@google/genai": "^0.21.0"
   }
 }

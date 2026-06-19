@@ -23,6 +23,9 @@ importers:
       '@lab/indicators':
         specifier: workspace:*
         version: link:../../packages/indicators
+      '@lab/llm-providers':
+        specifier: workspace:*
+        version: link:../../packages/llm-providers
       '@lab/market-data':
         specifier: workspace:*
         version: link:../../packages/market-data

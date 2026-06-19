@@ -12,6 +12,7 @@
     "@lab/contracts": "workspace:*",
     "@lab/database": "workspace:*",
     "@lab/indicators": "workspace:*",
+    "@lab/llm-providers": "workspace:*",
     "@lab/market-data": "workspace:*",
     "@lab/shared": "workspace:*"
   }
