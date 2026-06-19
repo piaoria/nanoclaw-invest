@@ -38,4 +38,34 @@ Node.js · JavaScript(ESM) · pnpm workspace · Docker Compose · Supabase(Postg
 
 ## 설치 / 실행
 
-> Phase 1 진행 중. 완료 시 이 섹션에 설치·실행 방법을 작성한다.
+### 1. 사전 준비
+- Node.js 22+ / pnpm 10+
+- 클라우드 Supabase 프로젝트 (URL + service_role 키)
+
+### 2. 환경변수
+```bash
+cp .env.example .env
+# .env 에 SUPABASE_URL, SUPABASE_SERVICE_KEY, GEMINI_API_KEY 등을 채운다
+```
+
+### 3. 의존성 설치 / 테스트
+```bash
+pnpm install
+pnpm test
+```
+
+### 4. DB 마이그레이션
+`supabase/migrations/0001_init.sql` 을 Supabase SQL Editor 또는 CLI로 실행한 뒤,
+필요 시 `supabase/seed.sql` 로 Gemini × ETF 포트폴리오를 시드한다.
+
+### 5. 로컬 실행
+```bash
+pnpm core:dev
+# Health: http://localhost:4001/health , http://localhost:4001/health/db
+```
+
+### 6. Docker (투자 서비스)
+```bash
+docker compose -f infra/docker-compose.yml up --build
+```
+> NanoClaw 는 Compose 밖, Mac mini 호스트에 직접 실행한다.

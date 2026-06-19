@@ -1,0 +1,22 @@
+# 투자 서비스만 Docker Compose 로 운영한다.
+# NanoClaw 는 호스트에 직접 실행하므로 여기에 넣지 않는다 (DinD 회피).
+# Supabase 는 클라우드 인스턴스를 사용하므로 컨테이너로 띄우지 않는다.
+
+services:
+  investment-core:
+    build:
+      context: ..
+      dockerfile: apps/investment-core/Dockerfile
+    image: lab/investment-core
+    env_file:
+      - ../.env
+    ports:
+      - "${INVESTMENT_CORE_PORT:-4001}:4001"
+    restart: unless-stopped
+    # 보안: 호스트 docker.sock 을 마운트하지 않는다.
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:4001/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
